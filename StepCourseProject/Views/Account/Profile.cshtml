@@ -1,0 +1,73 @@
+﻿@model ProfileVM
+@{
+    ViewData["Title"] = "Profile";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Freelancer | Profile</title>
+    <link rel="icon" href="~/img/tabIcon.jpg">
+    <link rel="stylesheet" href="~/css/app.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="loginBackground">
+        <div class="userPersonalInfo">
+            <div class="userInfo">
+                <p class="userInfo_helloTxt">Hello.</p>
+                <p class="userInfo_nameTxt">My name is @Model.FullName</p>
+                <p class="userInfo_professionalTxt">& I am freelancer</p>
+                <a href="https://github.com/" target="_blank" class="userInfo_portfolioBtn">
+                    <i class="far fa-image"></i>
+                    View portfolio
+                </a>
+            </div>
+            <img src="~/img/@Model.ImageUrl" alt="profile photo" class="userPersonalInfo_userPhoto">
+        </div>
+        <div class="userSkillInfo">
+            <div class="aboutMe">
+                <i class="fas fa-user-alt aboutMe_icon"></i>
+                <p class="aboutMe_txt">About me</p>
+            </div>
+            <p class="userSkillInfo_description">
+                @Model.Description
+            </p>
+            <div class="personalInfoContainer">
+                <div class="skillCardContainer">
+                    @foreach (var item in Model.Skills)
+                    {
+                        <div class="skillCardContainer_skillCard">
+                            <i class="fas fa-code skillCardContainer_icon"></i>
+                            <span class="skillCardContainer_typeTxt">@item.SkillName</span>
+                        </div>
+
+                    }
+                    
+                   
+                </div>
+                <div class="personalInfo">
+                    <p class="personalInfo_header">Personal info</p>
+                    <ul class="personalInfo_list">
+                        <li class="personalInfo_type"><p class="personalInfo_category">Username :</p> <p>@Model.UserName</p></li>
+                        <li class="personalInfo_type"><p class="personalInfo_category">Fullname :</p> <p>@Model.FullName</p></li>
+                        <li class="personalInfo_type"><p class="personalInfo_category">Email :</p> <p>@Model.Email</p></li>
+                        <li class="personalInfo_type"><p class="personalInfo_category">Birth date :</p> <p>@Model.BirthDay.ToString("MMMM dd")</p></li>
+                        <li class="personalInfo_type"><p class="personalInfo_category">Country :</p> <p>@Model.City</p></li>
+                        <li class="personalInfo_type"><p class="personalInfo_category">Experience :</p> <p>@Model.Experiance</p></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/app.min.js"></script>
+</body>
+</html>
+
+

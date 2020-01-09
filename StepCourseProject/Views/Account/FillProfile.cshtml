@@ -1,0 +1,247 @@
+﻿@*@model FillFreelanceProfileVM
+    @{
+        ViewData["Title"] = "FillProfile";
+        Layout = null;
+    }
+
+
+
+    <h1 class="badge-info">Profile Settings</h1>
+
+        <form asp-action="FillProfile" method="post" enctype="multipart/form-data">
+
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Email">Email</label>
+                    <input type="email" class="form-control" asp-for="Email" value="@ViewBag.Email" disabled placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="FullName">First/LastName</label>
+                    <input type="text" class="form-control" value="@ViewBag.UserName" disabled asp-for="FullName" placeholder="FullName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age">Age</label>
+                <input type="number" class="form-control" asp-for="Age" placeholder="Age">
+            </div>
+            <div class="form-group">
+                <label asp-for="Experience">Experience</label>
+                <input type="number" class="form-control" asp-for="Experience" placeholder="Experience">
+            </div>
+
+            <div class="form-group row col-md-6">
+                <label asp-for="BirthDay">BirthDay</label>
+                <input type="date" class="form-control" asp-for="BirthDay" placeholder="Birth Day">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tags</label>
+                <select name="skillIds" id="skillIds" asp-items="ViewBag.Skills" multiple class="form-control chosen-select"></select>
+            </div>
+            <div class="form-group row col-md-6">
+                <label asp-for="Description">Description</label>
+                <textarea class="form-control" asp-for="Description" placeholder="Desctiption"></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="City">City</label>
+                    <input type="text" class="form-control" asp-for="City">
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="ImageUrl">Choose Photo</label>
+                    <input type="file" name="file" id="file" value="" />
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input type="tel" class="form-control" asp-for="PhoneNumber">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+
+
+
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+            <script>
+                $("#skillIds").chosen();
+
+                $(document).ready(function () {
+
+
+                    var readURL = function (input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                $('.profile-pic').attr('src', e.target.result);
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
+
+                    $(".file-upload").on('change', function () {
+                        readURL(this);
+                    });
+
+                    $(".upload-button").on('click', function () {
+                        $(".file-upload").click();
+                    });
+                });
+            </script>
+        }
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Freelancer | Registration</title>
+        <link rel="icon" href="~/img/tabIcon.jpg">
+        <link rel="stylesheet" href="~/css/app.min.css">
+        <link rel="stylesheet" href="./jquery.tagselect.css">
+        <link rel="stylesheet" href="~/choosen/chosen.min.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+        <script src="./jquery.tagselect.js"></script>
+    </head>
+    <body>
+        <div class="loginBackground">
+            <div class="registration">
+                <img src="~/img/freelancer-logo.png" alt="freelancer" class="login_icon">
+                <p class="login_welcomeTxt">Registration</p>
+                @if (Model.ImageUrl == null)
+                {
+                    <img src="~/img/defaultProfilePhoto.png" alt="profile image" class="registration_photo">
+
+                }
+                else
+                {
+
+                    <img src="~/img/@Model.ImageUrl" alt="profile image" class="registration_photo">
+                }
+
+                <form asp-action="FillProfile" asp-controller="Account" enctype="multipart/form-data" class="registration_form">
+                    <input type="file" id="file" name="file" class="registration_inputPhoto">
+                    <input type="text" class="registration_input" asp-for="UserName" placeholder="Username">
+                    <input type="text" class="registration_input" asp-for="FullName" placeholder="Fullname">
+                    <input type="email" class="registration_input" asp-for="Email" placeholder="Email">
+                    <input type="text" class="registration_input" asp-for="BirthDay" placeholder="Birth day" onfocus="(this.type='date')" onfocusout="(this.type = 'text')">
+
+
+                    <label class="control-label">Tags</label>
+                    <select name="skillIds" id="skillIds" asp-items="ViewBag.Skills" multiple class="form-control chosen-select"></select>
+
+                    <input type="text" class="registration_input" asp-for="City" placeholder="Country">
+                    <input type="number" class="registration_input" asp-for="Experience" placeholder="Experience">
+
+                    <input type="text" class="registration_input" asp-for="GitHubLink" value="https://github.com/" placeholder="GitHub">
+                    <input type="text" class="registration_input" asp-for="OwnWebSite" placeholder="Have you own website link?">
+                    <textarea rows="5" class="registration_input resize_input" asp-for="Description" placeholder="Description"></textarea>
+                    <input type="submit" class="login_loginBtn" value="Save">
+                </form>
+            </div>
+        </div>
+        <script src="~/js/app.min.js"></script>
+        <script src="~/choosen/chosen.jquery.js"></script>
+        <script src="~/choosen/chosen.jquery.min.js"></script>
+        <script>
+            $("#skillIds").chosen();
+        </script>
+    </body>
+    </html>*@
+
+@model FillFreelanceProfileVM
+@{
+    ViewData["Title"] = "FillProfile";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Freelancer | Registration</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+            crossorigin="anonymous">
+    </script>
+    <script src="./jquery.tagselect.js"></script>
+    <link rel="icon" href="~/img/tabIcon.jpg">
+    <link rel="stylesheet" href="~/css/app.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="./jquery.tagselect.css">
+    <link rel="stylesheet" href="~/choosen/chosen.min.css">
+</head>
+<body>
+    <div class="loginBackground">
+        <div class="registration">
+
+            <img src="~/img/freelancer-logo.png" alt="freelancer" class="login_icon">
+            <p class="login_welcomeTxt">Profil Settings</p>
+
+            <div>
+                @if (Model.ImageUrl == null)
+                {
+                    <img src="~/img/u.png" alt="profile image" class="registration_photo">
+                }
+                else
+                {
+                    <img src="~/img/@Model.ImageUrl" alt="profile image" class="registration_photo">
+                }
+            </div>
+            <form asp-action="FillProfile" asp-controller="Account" enctype="multipart/form-data" class="registration_form">
+                <input type="file" id="file" name="file" class="registration_inputPhoto">
+                <input type="text" asp-for="UserName" class="registration_input mt-4" placeholder="Username">
+                <input type="text" asp-for="FullName" class="registration_input mt-4" placeholder="Fullname">
+                <input type="email" asp-for="Email" class="registration_input" placeholder="Email">
+                <input type="date" asp-for="BirthDay" class="registration_input" placeholder="Birth day" onfocus="(this.type='date')" onfocusout="(this.type = 'text')">
+                <input type="text" asp-for="City" class="registration_input" placeholder="Country">
+                <input type="number" asp-for="Experience" class="registration_input" placeholder="Experience">
+
+                <input type="text" asp-for="GitHubLink" class="registration_input" value="https://github.com/" placeholder="Github link">
+                <input type="text" asp-for="OwnWebSite" class="registration_input" placeholder="If you have own website link?">
+
+                <label class="control-label">Select your skills</label>
+                <select style="padding:10px;" name="skillIds" id="skillIds" asp-items="@ViewBag.Skills" multiple class="form-control chosen-select">
+                </select>
+
+                <textarea rows="5" asp-for="Description" class="registration_input resize_input mt-3" placeholder="Description"></textarea>
+                <input type="submit" class="login_loginBtn" value="Save">
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="~/js/app.min.js"></script>
+    <script src="~/choosen/chosen.jquery.js"></script>
+    <script src="~/choosen/chosen.jquery.min.js"></script>
+    <script>
+        $("#skillIds").chosen();
+    </script>
+</body>
+</html>
+
+
+
+
+

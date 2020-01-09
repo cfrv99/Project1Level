@@ -1,0 +1,68 @@
+﻿@model StepCourseProject.Models.LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+
+@*<h1>Login</h1>
+
+    <h4>LoginVM</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Freelancer | Login</title>
+    <link rel="icon" href="~/img/tabIcon.jpg">
+    <link rel="stylesheet" href="~/css/app.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="loginBackground">
+        <div class="login">
+            <img src="~/img/freelancer-logo.png" alt="freelancer" class="login_icon">
+            <p class="login_welcomeTxt">Welcome Back</p>
+            <button class="login_facebookBtn">
+                <i class="fab fa-facebook-f"></i>
+                Login with Facebook
+            </button>
+            <p class="login_orTxt">OR</p>
+            <form asp-action="Login" asp-controller="Account">
+                <input type="text" asp-for="UserName" class="login_input" placeholder="Email or Username">
+                <input type="password" asp-for="Password" class="login_input" placeholder="Password">
+                <input type="submit" class="login_loginBtn" value="Log In">
+            </form>
+        </div>
+    </div>
+    <script src="~/js/app.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+﻿@model StepCourseProject.Models.RegisterVM
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StepCourseProject</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .containerl {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default radio button */
+            .containerl input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+        /* Create a custom radio button */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .containerl:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .containerl input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .containerl input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .containerl .checkmark:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                        <img src="~/img/freelancer-logo.png" alt="Alternate Text" />
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form asp-action="Register" class="user">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" asp-for="UserName" placeholder="User Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" asp-for="FirstNameLastName" placeholder=" Fullname">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" asp-for="Email" placeholder="Email Address">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" asp-for="Password" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" asp-for="RepeatPassword" placeholder="Repeat Password">
+
+                                    </div>
+                                </div>
+                                
+                                <label style="font-size:16px;" class="containerl">
+                                    Freelancer
+                                    <input style="font-size:16px;" type="radio" value="Freelancer" id="selectedRole"  checked="checked" name="selectedRole">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label style="font-size:16px;" class="containerl">
+                                    Client
+                                    <input style="font-size:16px;" type="radio" id="selectedRole" value="Client" name="selectedRole">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Registration Now" />
+                                <hr>
+                                <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - StepCourseProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
