@@ -88,3 +88,4 @@ C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\ne
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\StepCourseProject.csproj.CopyComplete
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Shared\Components\Notification\Default.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Account\Profile.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Project\AllPost.cshtml.g.cs
