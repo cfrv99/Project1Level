@@ -19,7 +19,7 @@ namespace StepCourseProject.Entites
         public string PostDescription { get; set; }
         public decimal StartPrice { get; set; }
         public decimal EndPrice { get; set; }
-
+        public bool HaveIsDoneBid { get; set; }
         public DateTime PostDate { get; set; }
         public DateTime PostDeadLine { get; set; }
         //public List<PostSkill> PostSkills { get; set; }

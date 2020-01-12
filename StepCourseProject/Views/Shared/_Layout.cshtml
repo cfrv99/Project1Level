@@ -87,9 +87,20 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/signalr.min.js"></script>
     <script src="~/choosen/chosen.jquery.js"></script>
     <script src="~/choosen/chosen.jquery.min.js"></script>
 
+
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/not")
+            .build();
+
+        hubConnection.start();
+
+
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

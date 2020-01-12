@@ -18,14 +18,14 @@ namespace StepCourseProject.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        private readonly ICategoryService service;
+       
         private readonly ICategoryRepo repo;
         private readonly AppDbContext context;
         private readonly UserManager<AppUser> userManager;
 
-        public CategoryController(ICategoryService service, ICategoryRepo repo, AppDbContext context, UserManager<AppUser> userManager)
+        public CategoryController( ICategoryRepo repo, AppDbContext context, UserManager<AppUser> userManager)
         {
-            this.service = service;
+            
             this.repo = repo;
             this.context = context;
             this.userManager = userManager;

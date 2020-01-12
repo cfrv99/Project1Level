@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StepCourseProject.Entites;
 using StepCourseProject.Entites.Contexts;
+using StepCourseProject.Hubs;
 using StepCourseProject.Repository.Abstract;
 using StepCourseProject.Repository.Concrete;
 using StepCourseProject.Services.Abstract;
@@ -37,7 +38,7 @@ namespace StepCourseProject
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddTransient<ICategoryService, CategoryService>();
+           // services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ICategoryRepo, CategoryRepository>();
             services.AddTransient<ISkillRepo, SkillRepository>();
             services.AddTransient<IPostRepo, PostRepository>();
@@ -47,7 +48,7 @@ namespace StepCourseProject
             services.AddAuthorization();
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -66,7 +67,10 @@ namespace StepCourseProject
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/not");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

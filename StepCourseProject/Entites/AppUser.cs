@@ -24,7 +24,8 @@ namespace StepCourseProject.Entites
         public DateTime RegisterDate { get; set; }
         public string GitHubLink { get; set; }
         public string WebSiteLink { get; set; }
-        public int ConnectionId { get; set; }
+        public string ConnectionId { get; set; }
+        public bool IsOnline { get; set; }
         public DateTime BirthDay { get; set; }
         public int Rating { get; set; }
         public string ImageUrl { get; set; }

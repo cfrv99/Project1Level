@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,17 @@ namespace StepCourseProject
     {
         public static async Task Main(string[] args)
         {
+            //using (var connection = new HubConnection("http://localhost:60882/not"))
+            //{
+            //    IHubProxy stockTickerHubProxy = connection.CreateHubProxy("ChatHub");
+            //    await connection.Start();
+            //}
+            
+            //var connection = new HubConnection("http://localhost:60882/not");
+            //IHubProxy stockTickerHubProxy = connection.CreateHubProxy("ChatHub");
+
+            //await connection.Start();
+
             var host = CreateWebHostBuilder(args).Build();
             using (var container = host.Services.CreateScope())
             {

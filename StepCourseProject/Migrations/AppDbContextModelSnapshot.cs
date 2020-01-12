@@ -145,7 +145,7 @@ namespace StepCourseProject.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<int>("ConnectionId");
+                    b.Property<string>("ConnectionId");
 
                     b.Property<string>("Description");
 
@@ -161,6 +161,8 @@ namespace StepCourseProject.Migrations
                     b.Property<string>("GitHubLink");
 
                     b.Property<string>("ImageUrl");
+
+                    b.Property<bool>("IsOnline");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -273,15 +275,17 @@ namespace StepCourseProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("MessageText");
+
                     b.Property<string>("RecieverConnectionId");
 
-                    b.Property<int>("RecieverId");
+                    b.Property<string>("RecieverId");
 
                     b.Property<string>("RecieverUserId");
 
                     b.Property<string>("SenderConnectionId");
 
-                    b.Property<int>("SenderId");
+                    b.Property<string>("SenderId");
 
                     b.Property<string>("SenderUserId");
 
@@ -330,6 +334,8 @@ namespace StepCourseProject.Migrations
                     b.Property<int>("CategoryId");
 
                     b.Property<decimal>("EndPrice");
+
+                    b.Property<bool>("HaveIsDoneBid");
 
                     b.Property<DateTime>("PostDate");
 

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using StepCourseProject.Entites;
+using StepCourseProject.Hubs;
 using StepCourseProject.Models;
 
 namespace StepCourseProject.Controllers
@@ -13,10 +15,14 @@ namespace StepCourseProject.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> userManager;
+        private readonly IHubContext<ChatHub> hubContext;
+        
 
-        public HomeController(UserManager<AppUser> userManager)
+        public HomeController(UserManager<AppUser> userManager,IHubContext<ChatHub> hubContext)
         {
             this.userManager = userManager;
+            this.hubContext = hubContext;
+            
         }
 
         public IActionResult Index()
@@ -25,12 +31,17 @@ namespace StepCourseProject.Controllers
             //var user = await userManager.FindByNameAsync(User.Identity.Name);
             //ViewBag.Id = user.Id;
 
+
             return View();
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            var onlineUsers = userManager.Users.Where(i=>i.IsOnline==true);
+
+            ViewBag.a= ChatHub.onlineUsers;
+            
+            return View(onlineUsers);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
