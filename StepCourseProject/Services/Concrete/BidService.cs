@@ -23,18 +23,23 @@ namespace StepCourseProject.Services.Concrete
                 .FirstOrDefault();
             bid.IsDone = true;
             var post = context.Posts.Where(i => i.Id == postId).FirstOrDefault();
-            post.HaveIsDoneBid = true;
+            if (bid.IsDone == true)
+            {
+                post.HaveIsDoneBid = true;
+            }
             context.SaveChanges();
 
             Notification n = new Notification
             {
                 PostId = postId,
-                NotificationText = $"{currentUser.UserName} accept your bid to project",
+                NotificationText = $"{currentUser.UserName} accepted your bid to project",
                 FromUserName = currentUser.UserName,
                 AppUserId = bid.AppUserId,
                 IsRead = false
             };
             context.Notifications.Add(n);
+
+            context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FeelancerId = bid.AppUserId }); //baxilacaq
             context.SaveChanges();
         }
 

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StepCourseProject.Entites;
 using StepCourseProject.Entites.Contexts;
 using StepCourseProject.Models;
 using StepCourseProject.Repository.Abstract;
+using StepCourseProject.Services.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +14,28 @@ using System.Threading.Tasks;
 
 namespace StepCourseProject.Controllers
 {
+    [Authorize(Roles ="Freelancer")]
     public class ProjectController : Controller
     {
         private readonly IPostRepo repo;
         private readonly UserManager<AppUser> userManager;
         private readonly AppDbContext context;
+        private readonly IBidService bidService;
 
         public ProjectController(IPostRepo repo,
             UserManager<AppUser> userManager,
-            AppDbContext context)
+            AppDbContext context,
+            IBidService bidService)
         {
             this.repo = repo;
             this.userManager = userManager;
             this.context = context;
+            this.bidService = bidService;
         }
 
 
         //UI yoxdur
+        [HttpGet]
         public async Task<IActionResult> AllPost()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
@@ -91,7 +98,7 @@ namespace StepCourseProject.Controllers
         [HttpGet] //UI yoxdur
         public IActionResult Details(int id)
         {
-            var data = repo.GetPost(id);
+           // var data = repo.GetPost(id);
             var entity = context.Posts.Where(i => i.Id == id)
                 .Include(i => i.AppUser)
                 .Include(i => i.Bids)
@@ -99,6 +106,7 @@ namespace StepCourseProject.Controllers
                 .Select(i => new DetailViewModel
                 {
                     Id=i.Id,
+                    
                     PostName=i.PostName,
                     PostSkillName=i.Skill.SkillName,
                     PostDescription=i.PostDescription,
@@ -111,6 +119,23 @@ namespace StepCourseProject.Controllers
                     UserName=i.AppUser.UserName
                 }).FirstOrDefault();
 
+            return View(entity);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateBid(DetailViewModel vm)
+        {
+            var post = context.Posts.Where(i => i.Id == vm.CreateBid.PostId).FirstOrDefault();
+
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            Bid b = new Bid
+            {
+                BidBody = vm.CreateBid.BidBody,
+                BidDate = DateTime.Now,
+                BidPrice = vm.CreateBid.BidPrice
+            };
+
+            bidService.CreateBidToProject(post, b, user);
             return View();
         }
     }

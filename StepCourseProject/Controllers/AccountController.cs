@@ -173,7 +173,7 @@ namespace StepCourseProject.Controllers
             {
                 await signInManager.SignOutAsync();
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> FillProfile()
@@ -253,8 +253,7 @@ namespace StepCourseProject.Controllers
                         context.UpdateManyToMany(
                             context.UserSkills.Where(x => x.AppUserId == user.Id),
                             skillIds.Select(x => new UserSkill { AppUserId = user.Id, SkillId = x }),
-                            x => x.SkillId
-                            );
+                            x => x.SkillId);
 
                     var b = await context.SaveChangesAsync();
                     var result = await userManager.UpdateAsync(user);
@@ -279,7 +278,7 @@ namespace StepCourseProject.Controllers
         }
         [Route("{action}/User/{userId}")]
         public async Task<IActionResult> Profile(string userId)
-        {       
+        {
             var user = await userManager.FindByIdAsync(userId);
 
 
@@ -288,7 +287,7 @@ namespace StepCourseProject.Controllers
                 return BadRequest();
             }
             var skills = context.UserSkills.Include(i => i.Skill)
-                .Where(i => i.AppUserId == userId).Select(i=>i.SkillId).ToList();
+                .Where(i => i.AppUserId == userId).Select(i => i.SkillId).ToList();
 
             var u = userManager.Users;
 
@@ -312,7 +311,7 @@ namespace StepCourseProject.Controllers
                     Skills = i.UserSkills.Select(a => a.Skill).ToList()
                 }).FirstOrDefault();
 
-            ViewBag.Skills = skills; 
+            ViewBag.Skills = skills;
             return View(profile);
         }
     }

@@ -5,3 +5,9 @@
 
 <h1>AllPost</h1>
 
+@foreach (var item in Model)
+{
+    <h2>@item.PostName</h2>
+    <p>@item.SkillName</p>
+    <a asp-action="Details" asp-controller="Project" asp-route-id="@item.Id">Link to here</a>
+}

@@ -12,6 +12,8 @@ namespace StepCourseProject.Models
 
         public string PostName { get; set; }
 
+        public int PostId { get; set; }
+
         public string PostSkillName { get; set; }
 
         public string PostDescription { get; set; }

@@ -38,13 +38,11 @@ namespace StepCourseProject.Repository.Concrete
 
         public Post GetPost(int id)
         {
-            if (id > 0)
-            {
+            
                 var post = context.Posts.FirstOrDefault(i => i.Id == id);
                 return post;
-            }
-
-            throw new Exception("Post was not found");
+            
+            
         }
 
         public List<Post> GetPosts()

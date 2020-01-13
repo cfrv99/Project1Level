@@ -1,0 +1,18 @@
+﻿@model DetailViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<h2>@Model.PostName</h2>
+<h3>@Model.PostDescription</h3>
+
+<form asp-action="CreateBid" asp-controller="Project" method="post">
+    <input type="hidden" asp-for="CreateBid.PostId" value="@Model.Id" />
+    <input type="text"  asp-for="CreateBid.BidBody" placeholder="Body" value="" />    
+    <input type="number"  asp-for="CreateBid.BidPrice" placeholder="Price" value="" />
+    <input type="submit"  value="Add" />
+
+</form>
