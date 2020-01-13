@@ -48,8 +48,8 @@
                         </div>
 
                     }
-                    
-                   
+
+
                 </div>
                 <div class="personalInfo">
                     <p class="personalInfo_header">Personal info</p>
@@ -60,13 +60,24 @@
                         <li class="personalInfo_type"><p class="personalInfo_category">Birth date :</p> <p>@Model.BirthDay.ToString("MMMM dd")</p></li>
                         <li class="personalInfo_type"><p class="personalInfo_category">Country :</p> <p>@Model.City</p></li>
                         <li class="personalInfo_type"><p class="personalInfo_category">Experience :</p> <p>@Model.Experiance</p></li>
-                        
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <script src="~/js/app.min.js"></script>
+    <script src="~/js/signalr.min.js"></script>
+
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/not")
+            .build();
+
+        hubConnection.start();
+
+
+    </script>
 </body>
 </html>
 

@@ -10,8 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using StepCourseProject.Entites;
 using StepCourseProject.Entites.Contexts;
+using StepCourseProject.Extensions;
 using StepCourseProject.Hubs;
 using StepCourseProject.Repository.Abstract;
 using StepCourseProject.Repository.Concrete;
@@ -48,7 +51,13 @@ namespace StepCourseProject
             services.AddAuthorization();
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
-            services.AddSignalR();
+            //services.AddSignalR();
+            services.AddSignalR().AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                options.PayloadSerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                options.PayloadSerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -71,6 +80,7 @@ namespace StepCourseProject
             {
                 routes.MapHub<ChatHub>("/not");
             });
+            app.UseRouter(new FileRouter(env));
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

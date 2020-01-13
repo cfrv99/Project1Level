@@ -37,7 +37,7 @@ namespace StepCourseProject.Controllers
 
         public IActionResult Privacy()
         {
-            var onlineUsers = userManager.Users.Where(i=>i.IsOnline==true);
+            var onlineUsers = userManager.Users.Where(i=>i.IsOnline==true).ToList();
 
             ViewBag.a= ChatHub.onlineUsers;
             

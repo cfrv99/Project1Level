@@ -555,8 +555,9 @@ body:after {
       color: #fd7e14; }
     .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a {
       color: #000 !important; }
-      .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active {
-        color: #fd7e14 !important; }
+        .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active {
+            color: #29b2fe;
+        }
 
 /* Blocks */
 .site-blocks-cover {

@@ -6,7 +6,9 @@
 
 <p>Use this page to detail your site's privacy policy.</p>
 
-@foreach (var item in ViewBag.a)
+@foreach (var item in Model)
 {
-    <p>@item</p>
+    <p>@item.UserName</p>
 }
+
+<a href="/Home/tabicon.jpg">content</a>

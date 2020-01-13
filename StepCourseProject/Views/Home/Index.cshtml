@@ -30,7 +30,13 @@
     <link rel="stylesheet" href="~/banker/css/aos.css">
 
     <link rel="stylesheet" href="~/banker/css/style.css">
+    <style>
+        a{
+            color:#29b2fe;
+        }
 
+        
+    </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -625,7 +631,7 @@
 
                             <div class="row form-group">
                                 <div class="col-md-12">
-                                    <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
+                                    <input type="submit" value="Send Message" style="color:#29b2fe;" class="btn btn-info btn-md text-white">
                                 </div>
                             </div>
 
@@ -715,6 +721,15 @@
     <script src="~/js/signalr.min.js"></script>
     <script src="~/banker/js/main.js"></script>
 
-    
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/not")
+            .build();
+
+        hubConnection.start();
+
+
+    </script>
+
 </body>
 </html>
