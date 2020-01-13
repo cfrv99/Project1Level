@@ -22,14 +22,13 @@ namespace StepCourseProject.Entites.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.ApplyConfiguration(new PostSkillConfiguration());
+            builder.ApplyConfiguration(new FreelancerPostConfiguration());
             builder.ApplyConfiguration(new UserSkillConfiguration());
             base.OnModelCreating(builder);
         }
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        //public DbSet<PostSkill> PostSkills { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Notification> Notifications { get; set; }
@@ -37,6 +36,7 @@ namespace StepCourseProject.Entites.Contexts
         public DbSet<Bid> Bids { get; set; }
         public DbSet<ImageSlider> ImageSliders { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<FreelancerPost> FreelancerPosts { get; set; }
 
     }
 }

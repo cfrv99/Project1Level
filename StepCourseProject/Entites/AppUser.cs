@@ -14,6 +14,7 @@ namespace StepCourseProject.Entites
             Posts = new List<Post>();
             Bids = new List<Bid>();
             Notifications = new List<Notification>();
+            FreelancerPosts = new List<FreelancerPost>();
         }
 
         public string FullName { get; set; }
@@ -33,6 +34,7 @@ namespace StepCourseProject.Entites
         public List<Post> Posts { get; set; }
         public List<Bid> Bids { get; set; }
         public List<Notification> Notifications { get; set; }
+        public List<FreelancerPost> FreelancerPosts { get; set; }
 
 
     }

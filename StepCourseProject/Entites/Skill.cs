@@ -13,7 +13,7 @@ namespace StepCourseProject.Entites
         public List<UserSkill> UserSkills { get; set; }
         public Skill()
         {
-           // PostSkills = new List<PostSkill>();
+           
             UserSkills = new List<UserSkill>();
         }
 
