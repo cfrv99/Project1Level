@@ -138,5 +138,36 @@ namespace StepCourseProject.Controllers
             bidService.CreateBidToProject(post, b, user);
             return View();
         }
+
+
+        [ActionName("My")]
+        [Route("/projects")]
+        public async Task<IActionResult> CurrentFreelancerProjects()
+        {
+            var currentUser = await userManager.FindByNameAsync(User.Identity.Name);
+            string currentUserId = currentUser.Id;
+ 
+            var entity = await context.Posts.Include(i => i.FreelancerPosts)
+                .Include(i=>i.AppUser)
+                .Include(i=>i.Bids)
+                .Where(i => i.FreelancerPosts.Any(f => f.FreelancerId == currentUserId))
+                .Select(i=>new FreelancerOwnPostVM
+                {
+                    Id=i.Id,
+                    PostAuthorId=i.AppUser.Id,
+                    PostAuthorName=i.AppUser.UserName,
+                    PostDeadLine=i.PostDeadLine,
+                    PostDescription=i.PostDescription,
+                    PostName=i.PostName,
+                    PostPrice= i.Bids
+                    .Where(b=>b.PostId==i.Id && b.AppUserId==currentUserId && b.IsDone==true)
+                    .Select(b=>b.BidPrice)
+                    .FirstOrDefault()
+                })
+                .ToListAsync();
+
+
+            return View();
+        }
     }
 }

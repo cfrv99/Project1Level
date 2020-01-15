@@ -9,10 +9,7 @@ namespace StepCourseProject.Extensions
     public static class DbContextExtension
     {
         public static void UpdateManyToMany<T, TKey>(this DbContext db, IEnumerable<T> currentItems, IEnumerable<T> newItems, Func<T, TKey> getKey) where T : class
-        {
-            //cur [one, two, three]
-            //new [one, three, four]
-
+        {         
             if (currentItems != null)
             {
                 db.Set<T>().RemoveRange(currentItems.Except(newItems, getKey));

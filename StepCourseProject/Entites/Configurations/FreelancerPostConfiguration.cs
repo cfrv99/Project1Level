@@ -12,12 +12,12 @@ namespace StepCourseProject.Entites.Configurations
 
         public void Configure(EntityTypeBuilder<FreelancerPost> builder)
         {
-            builder.HasKey(bs => new { bs.PostId, bs.FeelancerId });
+            builder.HasKey(bs => new { bs.PostId, bs.FreelancerId });
 
 
             builder.HasOne(fp => fp.Freelancer)
                 .WithMany(fp => fp.FreelancerPosts)
-                .HasForeignKey(fp => fp.FeelancerId);
+                .HasForeignKey(fp => fp.FreelancerId);
 
             builder.HasOne(fp => fp.Post)
                 .WithMany(fp => fp.FreelancerPosts)

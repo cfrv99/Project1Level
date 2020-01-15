@@ -39,7 +39,7 @@ namespace StepCourseProject.Services.Concrete
             };
             context.Notifications.Add(n);
 
-            context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FeelancerId = bid.AppUserId }); //baxilacaq
+            context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FreelancerId = bid.AppUserId }); //baxilacaq
             context.SaveChanges();
         }
 
@@ -56,6 +56,17 @@ namespace StepCourseProject.Services.Concrete
                 PostId = post.Id
             };
             context.Bids.Add(b);
+
+            Notification n = new Notification()
+            {
+                FromUserName = user.UserName,
+                AppUserId = post.AppUserId,
+                PostId = post.Id,
+                NotificationText = $"{user.UserName} applyed your {post.PostName} project",
+                IsRead = false
+            };
+
+            context.Notifications.Add(n);
             context.SaveChanges();
         }
 
