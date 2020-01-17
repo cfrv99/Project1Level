@@ -28,10 +28,21 @@ namespace StepCourseProject.Controllers
         public IActionResult Index()
         {
 
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
-            //ViewBag.Id = user.Id;
+            //[HttpPost] with ajax
+            //public async Task<IActionResult> Send(Message vm)
+            //{
+            //    var currentUser = await userManager.GetUserAsync(User);
+            //    var recieverUser = await userManager.FindByIdAsync(vm.RecieverId);
 
-
+            //    if (string.IsNullOrEmpty(vm.MessageText))
+            //    {
+            //        return View(vm);
+            //    }
+            //    //ViewBag.Id = recieverUser.UserName;
+            //    messageService.SendMessage(currentUser, recieverUser, vm.MessageText);
+            //    await hubContext.Clients.Client(recieverUser.ConnectionId).SendAsync("RecieveMessage", vm.MessageText);
+            //    return RedirectToAction("SendMessage", new { userId = vm.RecieverId });
+            //}
             return View();
         }
 

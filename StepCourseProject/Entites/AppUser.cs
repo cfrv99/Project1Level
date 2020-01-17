@@ -37,7 +37,7 @@ namespace StepCourseProject.Entites
         public List<Bid> Bids { get; set; }
         public List<Notification> Notifications { get; set; }
         public List<FreelancerPost> FreelancerPosts { get; set; }
-        //public List<Message> Messages { get; set; }
+        
 
 
     }

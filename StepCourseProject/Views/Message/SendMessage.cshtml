@@ -287,7 +287,7 @@
 
                 </div>
                 <div class="mesgs">
-                    <div class="msg_history">
+                    <div class="msg_history" id="body">
 
 
                         <!--gelen mesaj-->
@@ -306,7 +306,7 @@
 
                         @foreach (var item in Model.Messages.OrderBy(i => i.MessageDate))
                         {
-                            string out_going, incomming_msg, sent_msg, recieved_msg, received_withd_msg;
+                            string out_going, sent_msg,  received_withd_msg, show;
 
 
                             if (item.SenderUser.UserName == User.Identity.Name)
@@ -314,21 +314,24 @@
                                 out_going = "outgoing_msg";
                                 sent_msg = "sent_msg";
                                 received_withd_msg = "";
+                                show = "hidden";
                             }
                             else
                             {
                                 out_going = "incoming_msg";
                                 sent_msg = "recieved_msg";
                                 received_withd_msg = "received_withd_msg";
+                                show = "";
                             }
                             <div class="@out_going">
+                                    
                                 <div class="@sent_msg">
                                     <div class="@received_withd_msg">
 
-                                        <p>
+                                        <p id="messageContext">
                                             @item.MessageText
                                         </p>
-                                        <span class="time_date"> 11:01 AM    |    June 9</span>
+                                        <span class="time_date"> @item.MessageDate.ToString("MMMM dd hh:mm")</span>
                                     </div>
                                 </div>
                             </div>
@@ -377,6 +380,9 @@
 
     connection.on("RecieveMessage", function (message) {
         console.log(message);
+        var ms = message;
+        var m = document.getElementById("messageContext");
+        $('messageContext').append(`<span id="add_here">${message}</span>`);
 
 
     });
@@ -411,6 +417,11 @@
 
     //    });
     //});
+
+        window.onload=function () {
+     var objDiv = document.getElementById("body");
+     objDiv.scrollTop = objDiv.scrollHeight;
+}
     </script>
 </body>
 </html>

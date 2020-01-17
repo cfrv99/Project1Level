@@ -26,14 +26,18 @@ namespace StepCourseProject.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            // var entity = service.GetMessagesByCurrentUser(user).Select(i=>i.MessagerSenderName).Distinct().ToList();
+      
             var entity = service.GetMessagesByCurrentUser(user).ToList();
-            var lastMessage = entity.OrderByDescending(i => i.MessageText).Select(i => i.MessageText).FirstOrDefault();
+
+            var lastMessage = entity.OrderByDescending(i => i.MessageDate).Select(i => i.MessageText).FirstOrDefault();
 
             ViewBag.Last = lastMessage;
+
             var data = service.GetMessagesByCurrentUser(user).OrderBy(i => i.MessageDate).Select(i=>i.MessageDate).FirstOrDefault();
 
             ViewBag.Date = data.ToString("MMMM dd");
+
+            ViewBag.Active = RouteData.Values["userId"].ToString();
             return View(entity);
         }
     }

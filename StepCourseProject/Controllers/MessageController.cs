@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace StepCourseProject.Controllers
 {
+    [Authorize]
     public class MessageController : Controller
     {
         private readonly UserManager<AppUser> userManager;
@@ -33,19 +35,19 @@ namespace StepCourseProject.Controllers
             this.context = context;
             this.hubContext = hubContext;
         }
-        
+
         [HttpGet("/message/{userId}")]
         public async Task<IActionResult> SendMessage(string userId)
         {
             var user = await userManager.GetUserAsync(User);
             var recieverUser = await userManager.FindByIdAsync(userId);
             ViewBag.UserId = userId;
-            var messagesByUser = context.Messages.Include(i=>i.SenderUser)
-                .Include(i=>i.RecieverUser)
-                .Where(i => i.SenderUserId == user.Id || i.RecieverUserId == userId)
+            var messagesByUser = context.Messages.Include(i => i.SenderUser)
+                .Include(i => i.RecieverUser)
+                .Where(i => (i.SenderUserId == user.Id && i.RecieverUserId == userId) || (i.SenderUserId == userId && i.RecieverUserId == user.Id))
                 .OrderBy(i => i.MessageDate)
                 .ToList();
-            
+
             SendMessageViewModel vm = new SendMessageViewModel
             {
                 Messages = messagesByUser
@@ -55,40 +57,26 @@ namespace StepCourseProject.Controllers
         }
 
         [HttpPost]
-        
-        public async Task<IActionResult> Send(SendMessageViewModel vm , string recieverId)
+
+        public async Task<IActionResult> Send(SendMessageViewModel vm, string recieverId)
         {
             var currentUser = await userManager.GetUserAsync(User);
             var recieverUser = await userManager.FindByIdAsync(recieverId);
 
-            if (string.IsNullOrEmpty(vm.Message.MessageText))
+            if (ModelState.IsValid)
             {
-                return View(vm);
-            }
-            //ViewBag.Id = recieverUser.UserName;
-            messageService.SendMessage(currentUser, recieverUser, vm.Message.MessageText);
-            await hubContext.Clients.Client(recieverUser.ConnectionId).SendAsync("RecieveMessage", vm.Message.MessageText);
 
-            return RedirectToAction("SendMessage", new { userId = recieverId });
+                messageService.SendMessage(currentUser, recieverUser, vm.Message.MessageText);
+                await hubContext.Clients.Client(recieverUser.ConnectionId).SendAsync("RecieveMessage", vm.Message.MessageText);
+
+                return RedirectToAction("SendMessage", new { userId = recieverId });
+            }
+            return RedirectToAction("Message", "SendMessage", new { userId = recieverId });
+            
         }
 
 
 
-        //[HttpPost] with ajax
-        //public async Task<IActionResult> Send(Message vm)
-        //{
-        //    var currentUser = await userManager.GetUserAsync(User);
-        //    var recieverUser = await userManager.FindByIdAsync(vm.RecieverId);
 
-        //    if (string.IsNullOrEmpty(vm.MessageText))
-        //    {
-        //        return View(vm);
-        //    }
-        //    //ViewBag.Id = recieverUser.UserName;
-        //    messageService.SendMessage(currentUser, recieverUser, vm.MessageText);
-        //    await hubContext.Clients.Client(recieverUser.ConnectionId).SendAsync("RecieveMessage", vm.MessageText);
-
-        //    return RedirectToAction("SendMessage", new { userId = vm.RecieverId });
-        //}
     }
 }
