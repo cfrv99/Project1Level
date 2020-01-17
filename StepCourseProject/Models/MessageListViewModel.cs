@@ -9,6 +9,7 @@ namespace StepCourseProject.Models
     {
         public int Id { get; set; }
         public string MessageText { get; set; }
+        
         public DateTime MessageDate { get; set; }
         public string MessagerSenderName { get; set; }
     }

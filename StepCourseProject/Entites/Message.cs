@@ -8,13 +8,18 @@ namespace StepCourseProject.Entites
     public class Message
     {
         public int Id { get; set; }
-        public string SenderId { get; set; }
-        public string SenderConnectionId { get; set; }
-        public string RecieverConnectionId { get; set; }
+
+        public string SenderUserId { get; set; }
+
         public AppUser SenderUser { get; set; }
-        public string MessageText { get; set; }
-        public string RecieverId { get; set; }
+
+        public string RecieverUserId { get; set; }
+
         public AppUser RecieverUser { get; set; }
+
+        public DateTime MessageDate { get; set; }
+
+        public string MessageText { get; set; }
 
     }
 }

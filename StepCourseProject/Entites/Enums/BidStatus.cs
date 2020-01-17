@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace StepCourseProject.Entites.Enums
 {
-    public class BidStatus
+    public enum BidStatus
     {
+        Waiting,
+        Accepted,
+        Decline
     }
 }

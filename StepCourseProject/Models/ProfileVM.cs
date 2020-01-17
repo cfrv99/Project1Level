@@ -20,6 +20,7 @@ namespace StepCourseProject.Models
         public int Experiance { get; set; }
         public string GitHubLink { get; set; }
         public string WebSiteLink { get; set; }
+        public string AppUserId { get; set; }
         public List<Skill> Skills { get; set; }
         public string ImageUrl { get; set; }
         public string Role { get; set; }

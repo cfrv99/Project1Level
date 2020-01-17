@@ -45,5 +45,11 @@ namespace StepCourseProject.Hubs
 
             await base.OnDisconnectedAsync(exception);
         }
+
+
+        public void SendMessage(string message,string user)
+        {
+             Clients.All.SendAsync("RecieveMessage", message);
+        }
     }
 }

@@ -224,6 +224,8 @@ namespace StepCourseProject.Migrations
 
                     b.Property<int>("PostId");
 
+                    b.Property<int>("Status");
+
                     b.Property<bool>("isPublic");
 
                     b.HasKey("Id");
@@ -288,17 +290,11 @@ namespace StepCourseProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("MessageDate");
+
                     b.Property<string>("MessageText");
 
-                    b.Property<string>("RecieverConnectionId");
-
-                    b.Property<string>("RecieverId");
-
                     b.Property<string>("RecieverUserId");
-
-                    b.Property<string>("SenderConnectionId");
-
-                    b.Property<string>("SenderId");
 
                     b.Property<string>("SenderUserId");
 

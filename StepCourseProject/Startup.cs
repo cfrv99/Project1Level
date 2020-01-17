@@ -46,6 +46,7 @@ namespace StepCourseProject
             services.AddTransient<ISkillRepo, SkillRepository>();
             services.AddTransient<IPostRepo, PostRepository>();
             services.AddTransient<IBidService, BidService>();
+            services.AddTransient<IMessageService, MessageService>();
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddAuthentication();

@@ -297,6 +297,7 @@ namespace StepCourseProject.Controllers
                 .Select(i => new ProfileVM
                 {
                     Id = i.Id,
+                    AppUserId=i.Id,
                     ImageUrl = i.ImageUrl,
                     Age = i.Age,
                     Experiance = i.Experience,

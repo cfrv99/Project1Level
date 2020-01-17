@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace StepCourseProject.Entites
             Bids = new List<Bid>();
             Notifications = new List<Notification>();
             FreelancerPosts = new List<FreelancerPost>();
+            
         }
 
         public string FullName { get; set; }
@@ -35,6 +37,7 @@ namespace StepCourseProject.Entites
         public List<Bid> Bids { get; set; }
         public List<Notification> Notifications { get; set; }
         public List<FreelancerPost> FreelancerPosts { get; set; }
+        //public List<Message> Messages { get; set; }
 
 
     }

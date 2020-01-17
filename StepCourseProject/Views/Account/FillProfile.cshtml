@@ -199,7 +199,7 @@
             <div>
                 @if (Model.ImageUrl == null)
                 {
-                    <img src="~/img/u.png" alt="profile image" class="registration_photo">
+                    <img src="~/img/defaultProfilePhoto.png" alt="profile image" class="registration_photo">
                 }
                 else
                 {
@@ -211,7 +211,7 @@
                 <input type="text" asp-for="UserName" class="registration_input mt-4" placeholder="Username">
                 <input type="text" asp-for="FullName" class="registration_input mt-4" placeholder="Fullname">
                 <input type="email" asp-for="Email" class="registration_input" placeholder="Email">
-                <input type="date" asp-for="BirthDay" class="registration_input" placeholder="Birth day" onfocus="(this.type='date')" onfocusout="(this.type = 'text')">
+                <input type="text" asp-for="BirthDay" value="@Model.BirthDay" class="registration_input" placeholder="Birth day" onfocus="(this.type='date')" onfocusout="(this.type = 'text')">
                 <input type="text" asp-for="City" class="registration_input" placeholder="Country">
                 <input type="number" asp-for="Experience" class="registration_input" placeholder="Experience">
 

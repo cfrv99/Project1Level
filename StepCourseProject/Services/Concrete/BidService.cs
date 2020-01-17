@@ -1,5 +1,6 @@
 ﻿using StepCourseProject.Entites;
 using StepCourseProject.Entites.Contexts;
+using StepCourseProject.Entites.Enums;
 using StepCourseProject.Services.Abstract;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace StepCourseProject.Services.Concrete
             {
                 post.HaveIsDoneBid = true;
             }
+            bid.Status = BidStatus.Accepted;
+
+            //var stayingBids = context.Bids.Where(i => i.Id != bidId && i.PostId != postId).ToList();
+            //foreach (var item in stayingBids)
+            //{
+            //    item.Status = BidStatus.Decline;
+            //}
             context.SaveChanges();
 
             Notification n = new Notification
@@ -52,6 +60,7 @@ namespace StepCourseProject.Services.Concrete
                 BidDate = bid.BidDate,
                 BidPrice = bid.BidPrice,
                 IsDone = false,
+                Status=Entites.Enums.BidStatus.Waiting,
                 isPublic = bid.isPublic,
                 PostId = post.Id
             };

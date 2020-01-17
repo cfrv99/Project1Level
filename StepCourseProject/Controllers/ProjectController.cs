@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace StepCourseProject.Controllers
 {
-    [Authorize(Roles ="Freelancer")]
+    [Authorize(Roles = "Freelancer")]
     public class ProjectController : Controller
     {
         private readonly IPostRepo repo;
@@ -98,25 +98,25 @@ namespace StepCourseProject.Controllers
         [HttpGet] //UI yoxdur
         public IActionResult Details(int id)
         {
-           // var data = repo.GetPost(id);
+            // var data = repo.GetPost(id);
             var entity = context.Posts.Where(i => i.Id == id)
                 .Include(i => i.AppUser)
                 .Include(i => i.Bids)
                 .Include(i => i.Skill)
                 .Select(i => new DetailViewModel
                 {
-                    Id=i.Id,
-                    
-                    PostName=i.PostName,
-                    PostSkillName=i.Skill.SkillName,
-                    PostDescription=i.PostDescription,
-                    PostStartPrice=i.StartPrice,
-                    PostEndPrice=i.EndPrice,
-                    Bids= i.Bids.Where(a=>a.isPublic).ToList(),
-                    PostDate=i.PostDate,
-                    PostDeadLine=i.PostDeadLine,
-                    UserId=i.AppUser.Id,
-                    UserName=i.AppUser.UserName
+                    Id = i.Id,
+
+                    PostName = i.PostName,
+                    PostSkillName = i.Skill.SkillName,
+                    PostDescription = i.PostDescription,
+                    PostStartPrice = i.StartPrice,
+                    PostEndPrice = i.EndPrice,
+                    Bids = i.Bids.Where(a => a.isPublic).ToList(),
+                    PostDate = i.PostDate,
+                    PostDeadLine = i.PostDeadLine,
+                    UserId = i.AppUser.Id,
+                    UserName = i.AppUser.UserName
                 }).FirstOrDefault();
 
             return View(entity);
@@ -141,27 +141,27 @@ namespace StepCourseProject.Controllers
 
 
         [ActionName("My")]
-        [Route("/projects")]
+        [Route("/projects")]  //ui yoxdur
         public async Task<IActionResult> CurrentFreelancerProjects()
         {
             var currentUser = await userManager.FindByNameAsync(User.Identity.Name);
             string currentUserId = currentUser.Id;
- 
+
             var entity = await context.Posts.Include(i => i.FreelancerPosts)
-                .Include(i=>i.AppUser)
-                .Include(i=>i.Bids)
+                .Include(i => i.AppUser)
+                .Include(i => i.Bids)
                 .Where(i => i.FreelancerPosts.Any(f => f.FreelancerId == currentUserId))
-                .Select(i=>new FreelancerOwnPostVM
+                .Select(i => new FreelancerOwnPostVM
                 {
-                    Id=i.Id,
-                    PostAuthorId=i.AppUser.Id,
-                    PostAuthorName=i.AppUser.UserName,
-                    PostDeadLine=i.PostDeadLine,
-                    PostDescription=i.PostDescription,
-                    PostName=i.PostName,
-                    PostPrice= i.Bids
-                    .Where(b=>b.PostId==i.Id && b.AppUserId==currentUserId && b.IsDone==true)
-                    .Select(b=>b.BidPrice)
+                    Id = i.Id,
+                    PostAuthorId = i.AppUser.Id,
+                    PostAuthorName = i.AppUser.UserName,
+                    PostDeadLine = i.PostDeadLine,
+                    PostDescription = i.PostDescription,
+                    PostName = i.PostName,
+                    PostPrice = i.Bids
+                    .Where(b => b.PostId == i.Id && b.AppUserId == currentUserId && b.IsDone == true)
+                    .Select(b => b.BidPrice)
                     .FirstOrDefault()
                 })
                 .ToListAsync();
@@ -169,5 +169,7 @@ namespace StepCourseProject.Controllers
 
             return View();
         }
+
+
     }
 }

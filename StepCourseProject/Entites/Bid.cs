@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StepCourseProject.Entites.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace StepCourseProject.Entites
         public int PostId { get; set; }
         public bool isPublic { get; set; }
         public Post Post { get; set; }
-
+        public BidStatus Status { get; set; }
 
     }
 }

@@ -93,12 +93,20 @@
 
 
     <script>
-        const hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl("/not")
-            .build();
 
-        hubConnection.start();
+        //const hubConnection = new signalR.HubConnectionBuilder()
+        //    .withUrl("/not")
+        //    .build();
 
+        //hubConnection.start();
+    var connection = null;
+
+    connection = new signalR
+                .HubConnectionBuilder()
+                .withUrl("/not")
+        .build();
+
+    connection.start();
 
     </script>
 
