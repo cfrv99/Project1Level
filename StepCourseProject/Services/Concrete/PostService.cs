@@ -34,7 +34,7 @@ namespace StepCourseProject.Services.Concrete
             context.SaveChanges();
             
         }
-
+        //Client
         public List<Post> GetYourPosts(AppUser currentUser)
         {
             var data = context.Posts

@@ -32,6 +32,7 @@ namespace StepCourseProject.Entites
         public DateTime BirthDay { get; set; }
         public int Rating { get; set; }
         public string ImageUrl { get; set; }
+        public string Company { get; set; }
         public List<UserSkill> UserSkills { get; set; }
         public List<Post> Posts { get; set; }
         public List<Bid> Bids { get; set; }

@@ -26,6 +26,8 @@ namespace StepCourseProject.Areas.Admin.ViewComponents
         {
             var user = await userManager.FindByNameAsync("Admin");
 
+
+            
             var data = context.Notifications.Include(i=>i.AppUser).Where(i => i.AppUserId == user.Id).Take(5);
             ViewBag.Count = context.Notifications.Where(i => i.IsRead==false).Count();
             return View(data);

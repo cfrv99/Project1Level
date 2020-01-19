@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StepCourseProject.Entites;
 using StepCourseProject.Entites.Contexts;
+using StepCourseProject.Entites.Enums;
 using StepCourseProject.Models;
 using StepCourseProject.Repository.Abstract;
 using StepCourseProject.Services.Abstract;
@@ -98,7 +99,7 @@ namespace StepCourseProject.Controllers
         [HttpGet] //UI yoxdur
         public IActionResult Details(int id)
         {
-            // var data = repo.GetPost(id);
+            
             var entity = context.Posts.Where(i => i.Id == id)
                 .Include(i => i.AppUser)
                 .Include(i => i.Bids)
@@ -132,7 +133,8 @@ namespace StepCourseProject.Controllers
             {
                 BidBody = vm.CreateBid.BidBody,
                 BidDate = DateTime.Now,
-                BidPrice = vm.CreateBid.BidPrice
+                BidPrice = vm.CreateBid.BidPrice,
+                Status = BidStatus.Waiting
             };
 
             bidService.CreateBidToProject(post, b, user);
@@ -160,7 +162,7 @@ namespace StepCourseProject.Controllers
                     PostDescription = i.PostDescription,
                     PostName = i.PostName,
                     PostPrice = i.Bids
-                    .Where(b => b.PostId == i.Id && b.AppUserId == currentUserId && b.IsDone == true)
+                    .Where(b => b.PostId == i.Id && b.AppUserId == currentUserId && b.IsDone == true && b.Status==BidStatus.Accepted)
                     .Select(b => b.BidPrice)
                     .FirstOrDefault()
                 })

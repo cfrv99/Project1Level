@@ -12,6 +12,7 @@ namespace StepCourseProject.Models
         public string UserId { get; set; }
         public DateTime MessageDate { get; set; }
         public bool OnlineStatus { get; set; }
+        public string ImageUrl { get; set; }
         public string MessagerSenderName { get; set; }
     }
 }

@@ -290,19 +290,7 @@
                     <div class="msg_history" id="body">
 
 
-                        <!--gelen mesaj-->
-                        @*<div class="incoming_msg">
-                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>
-                                            Test which is a new approach to have all
-                                            solutions
-                                        </p>
-                                        <span class="time_date"> 11:01 AM    |    June 9</span>
-                                    </div>
-                                </div>
-                            </div>*@
+                       
 
                         @foreach (var item in Model.Messages.OrderBy(i => i.MessageDate))
                         {
@@ -338,16 +326,7 @@
 
                         }
 
-                        <!--gonderilen mesjlar-->
-                        @*<div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p>
-                                        Test which is a new approach to have all
-                                        solutions
-                                    </p>
-                                    <span class="time_date"> 11:01 AM    |    June 9</span>
-                                </div>
-                            </div>*@
+                      
 
                     </div>
                     <div class="type_msg">
@@ -386,37 +365,6 @@
 
 
     });
-
-    @*document.getElementById("sendButton").addEventListener("click", function (event) {
-        var message = document.getElementById("txtText").value;
-        //var user = document.getElementById("userInput").value;
-        var userId = @userName;
-        connection.invoke("SendMessage", message).catch(function (err) {
-            return console.error(err.toString());
-        });
-        event.preventDefault();
-    });*@
-
-    //document.getElementById("send").addEventListener("click", function (event) {
-    //    var messages = {
-    //        MessageText: document.getElementById("txtText").value,
-    //        RecieverId: document.getElementById("recieverId").value
-    //    }
-
-    //    var p = document.getElementById("rrr");
-    //    $.ajax({
-    //        type: "POST",
-    //        url: "/Message/Send",
-    //        data: messages,
-    //        success: function (data) {
-    //            console.log(messages.MessageText);
-    //            var text = document.createTextNode(messages.MessageText);
-    //            p.appendChild(text);
-
-    //        }
-
-    //    });
-    //});
 
         window.onload=function () {
      var objDiv = document.getElementById("body");

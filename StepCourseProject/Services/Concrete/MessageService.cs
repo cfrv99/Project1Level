@@ -40,15 +40,15 @@ namespace StepCourseProject.Services.Concrete
                 .Select(i => new MessageListViewModel
                 {
                     Id = i.Id,
-                    UserId = i.RecieverUserId==currentUser.Id?i.SenderUserId:i.RecieverUserId,
-                    MessagerSenderName = i.RecieverUser.UserName,
+                    UserId = i.RecieverUserId == currentUser.Id ? i.SenderUserId : i.RecieverUserId,
+                    MessagerSenderName = i.RecieverUser.UserName == currentUser.UserName ? i.SenderUser.UserName : i.RecieverUser.UserName,
                     MessageText = i.MessageText,
                     OnlineStatus = i.RecieverUser.IsOnline,
-                    MessageDate=i.MessageDate
-
+                    MessageDate = i.MessageDate,
+                    ImageUrl = i.RecieverUser.UserName==currentUser.UserName ? i.SenderUser.ImageUrl :i.RecieverUser.ImageUrl
                 })
-                .OrderBy(i=>i.MessageDate)
-                .DistinctBy(i=>i.MessagerSenderName)
+                .OrderBy(i => i.MessageDate)
+                .DistinctBy(i => i.MessagerSenderName)               
                 .ToList();
 
             return messagesByCurrentUser;

@@ -1,0 +1,90 @@
+﻿@model ClientProfileSettingsVM
+@{
+    ViewData["Title"] = "ClientProfileSettings";
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Freelancer | Registration</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+            crossorigin="anonymous">
+    </script>
+    <script src="./jquery.tagselect.js"></script>
+    <link rel="icon" href="~/img/tabIcon.jpg">
+    <link rel="stylesheet" href="~/css/app.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="./jquery.tagselect.css">
+    <link rel="stylesheet" href="~/choosen/chosen.min.css">
+</head>
+<body>
+    <div class="loginBackground">
+        <div class="registration">
+
+            <img src="~/img/freelancer-logo.png" alt="freelancer" class="login_icon">
+            <p class="login_welcomeTxt">Profil Settings</p>
+
+            <div>
+                @if (Model.ClientImageUrl == null)
+                {
+                    <img src="~/img/defaultProfilePhoto.png" alt="profile image" class="registration_photo">
+                }
+                else
+                {
+                    <img src="~/img/@Model.ClientImageUrl" alt="profile image" class="registration_photo">
+                }
+            </div>
+            <form asp-action="Settings" asp-controller="ClientProfile" enctype="multipart/form-data" class="registration_form">
+                <input type="file" id="file" name="file" class="registration_inputPhoto">
+                <input type="text" asp-for="ClientName" class="registration_input mt-4" placeholder="Username">
+                <input type="text" asp-for="FullName" class="registration_input mt-4" placeholder="Fullname">
+                <input type="email" asp-for="Email" class="registration_input" placeholder="Email">
+
+                <input type="text" asp-for="City" class="registration_input" placeholder="Country">
+                <input type="tel" asp-for="PhoneNumber" class="registration_input" placeholder="Phone Number">
+                <input type="tel" asp-for="Age" class="registration_input" placeholder="Age">
+                <input type="text" asp-for="Company" class="registration_input" placeholder="Company">
+
+
+
+
+                <textarea rows="5" asp-for="Description" class="registration_input resize_input mt-3" placeholder="Description"></textarea>
+                <input type="submit" class="login_loginBtn" value="Save">
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="~/js/app.min.js"></script>
+    <script src="~/choosen/chosen.jquery.js"></script>
+    <script src="~/choosen/chosen.jquery.min.js"></script>
+    <script src="~/js/signalr.min.js"></script>
+
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/not")
+            .build();
+
+        hubConnection.start();
+
+
+
+       
+    </script>
+</body>
+</html>

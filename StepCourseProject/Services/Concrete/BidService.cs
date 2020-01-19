@@ -30,11 +30,23 @@ namespace StepCourseProject.Services.Concrete
             }
             bid.Status = BidStatus.Accepted;
 
-            //var stayingBids = context.Bids.Where(i => i.Id != bidId && i.PostId != postId).ToList();
-            //foreach (var item in stayingBids)
-            //{
-            //    item.Status = BidStatus.Decline;
-            //}
+            var stayingBids = context.Bids.Where(i => i.PostId == postId && i.IsDone == false).ToList();
+            foreach (var item in stayingBids)
+            {
+                item.Status = BidStatus.Decline;
+                Notification declines = new Notification()
+                {
+                    PostId = item.PostId,
+                    NotificationText = $"{currentUser.UserName} declined your bid to project",
+                    FromUserName = currentUser.UserName,
+                    AppUserId=item.AppUserId,
+                    IsRead = false
+
+                };
+
+                context.Notifications.Add(declines);
+                context.SaveChanges();
+            }
             context.SaveChanges();
 
             Notification n = new Notification
@@ -47,7 +59,7 @@ namespace StepCourseProject.Services.Concrete
             };
             context.Notifications.Add(n);
 
-            context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FreelancerId = bid.AppUserId }); //baxilacaq
+            context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FreelancerId = bid.AppUserId }); 
             context.SaveChanges();
         }
 

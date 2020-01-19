@@ -93,3 +93,4 @@ C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\bin\Debug\ne
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Project\Details.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Message\SendMessage.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\MessageInbox\Default.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\ClientProfile\ClientProfileSettings.cshtml.g.cs

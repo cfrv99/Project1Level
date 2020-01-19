@@ -219,12 +219,12 @@ namespace StepCourseProject.Controllers
         public async Task<IActionResult> FillProfile(FillFreelanceProfileVM vm, int[] skillIds, IFormFile file)
         {
 
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
             if (ModelState.IsValid)
             {
 
                 if (file != null)
                 {
-                    var user = await userManager.FindByNameAsync(User.Identity.Name);
 
                     var filename = $"{Guid.NewGuid().ToString()}{file.FileName}";
                     var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", filename);
@@ -256,24 +256,24 @@ namespace StepCourseProject.Controllers
                             x => x.SkillId);
 
                     var b = await context.SaveChangesAsync();
+
+                    
                     var result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        var selectedItems = context.UserSkills.Where(i => i.AppUserId == user.Id).Select(i => i.SkillId);
-                        if (selectedItems == null)
-                        {
-                            ViewBag.Skills = new MultiSelectList(context.Skills, "Id", "SkillName");
-
-                        }
-
-                        ViewBag.Skills = new MultiSelectList(context.Skills, "Id", "SkillName", selectedItems);
 
                         TempData["OK"] = "Profile sucsessfully filled!!!";
                         return Redirect("/");
                     }
                 }
             }
+            var selectedItems = context.UserSkills.Where(i => i.AppUserId == user.Id).Select(i => i.SkillId);
+            if (selectedItems == null)
+            {
+                ViewBag.Skills = new MultiSelectList(context.Skills, "Id", "SkillName");
 
+            }
+            ViewBag.Skills = new MultiSelectList(context.Skills, "Id", "SkillName", selectedItems);
             return View(vm);
         }
         [Route("{action}/User/{userId}")]
@@ -289,15 +289,15 @@ namespace StepCourseProject.Controllers
             var skills = context.UserSkills.Include(i => i.Skill)
                 .Where(i => i.AppUserId == userId).Select(i => i.SkillId).ToList();
 
-            var u = userManager.Users;
+            var users = userManager.Users;
 
-            var profile = u.Include(i => i.UserSkills)
+            var profile = users.Include(i => i.UserSkills)
                 .ThenInclude(i => i.Skill)
                 .Where(i => i.Id == userId)
                 .Select(i => new ProfileVM
                 {
                     Id = i.Id,
-                    AppUserId=i.Id,
+                    AppUserId = i.Id,
                     ImageUrl = i.ImageUrl,
                     Age = i.Age,
                     Experiance = i.Experience,
