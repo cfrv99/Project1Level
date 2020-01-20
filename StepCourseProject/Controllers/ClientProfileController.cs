@@ -24,7 +24,7 @@ namespace StepCourseProject.Controllers
             this.userManager = userManager;
             this.context = context;
         }
-
+        [Route("current/client/profile")]
         public async Task<IActionResult> ClientProfileSettings()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
@@ -45,6 +45,7 @@ namespace StepCourseProject.Controllers
 
             return View(vm);
         }
+
         [HttpPost]
         public async Task<IActionResult> Settings(ClientProfileSettingsVM vm, IFormFile file)
         {
