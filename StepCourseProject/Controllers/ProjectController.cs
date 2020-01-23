@@ -138,6 +138,7 @@ namespace StepCourseProject.Controllers
             };
 
             bidService.CreateBidToProject(post, b, user);
+            
             return View();
         }
 

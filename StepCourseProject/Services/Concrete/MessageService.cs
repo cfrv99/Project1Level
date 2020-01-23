@@ -43,7 +43,7 @@ namespace StepCourseProject.Services.Concrete
                     UserId = i.RecieverUserId == currentUser.Id ? i.SenderUserId : i.RecieverUserId,
                     MessagerSenderName = i.RecieverUser.UserName == currentUser.UserName ? i.SenderUser.UserName : i.RecieverUser.UserName,
                     MessageText = i.MessageText,
-                    OnlineStatus = i.RecieverUser.IsOnline,
+                    OnlineStatus = i.RecieverUser.UserName == currentUser.UserName ? i.SenderUser.IsOnline : i.RecieverUser.IsOnline,
                     MessageDate = i.MessageDate,
                     ImageUrl = i.RecieverUser.UserName==currentUser.UserName ? i.SenderUser.ImageUrl :i.RecieverUser.ImageUrl
                 })

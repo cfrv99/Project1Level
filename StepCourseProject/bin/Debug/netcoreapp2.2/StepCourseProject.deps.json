@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.2": {
       "StepCourseProject/1.0.0": {
         "dependencies": {
+          "JetBrains.ReSharper.CommandLineTools": "2019.3.1",
           "Microsoft.AspNet.SignalR.Client": "2.4.1",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
@@ -40,6 +41,7 @@
           "StepCourseProject.dll": {}
         }
       },
+      "JetBrains.ReSharper.CommandLineTools/2019.3.1": {},
       "Microsoft.AspNet.SignalR.Client/2.4.1": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2"
@@ -3572,6 +3574,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "JetBrains.ReSharper.CommandLineTools/2019.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZKv4IXTOB/ZcacRho2r2DPhNhEp4EfgezkaelGoirypnkbHg53E2cWRXpS9EnKVDS16sL8PK9vOUHmKxR9236w==",
+      "path": "jetbrains.resharper.commandlinetools/2019.3.1",
+      "hashPath": "jetbrains.resharper.commandlinetools.2019.3.1.nupkg.sha512"
     },
     "Microsoft.AspNet.SignalR.Client/2.4.1": {
       "type": "package",

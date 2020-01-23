@@ -38,6 +38,12 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "JetBrains.ReSharper.CommandLineTools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2019.3.1, )"
+            },
             "Microsoft.AspNet.SignalR.Client": {
               "target": "Package",
               "version": "[2.4.1, )"
