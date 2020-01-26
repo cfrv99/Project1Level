@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BlogAdminPageVM>
+@{
+    ViewData["Title"] = "Blogs";
+    
+}
+
+    <h2><a asp-action="Create">Create Blog</a></h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Url</th>
+            <th scope="col">Date</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var blog in Model)
+        {
+
+            <tr>
+                <th scope="row">@blog.BlogId</th>
+                <td>@blog.BlogName</td>
+                <td>@blog.BlogUrl</td>
+                <td>@blog.BlogDate</td>
+                <td><a asp-action="Details" asp-controller="Blog" asp-route-id="@blog.BlogId">Detail</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

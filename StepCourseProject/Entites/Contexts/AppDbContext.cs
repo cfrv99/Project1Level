@@ -37,6 +37,6 @@ namespace StepCourseProject.Entites.Contexts
         public DbSet<ImageSlider> ImageSliders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<FreelancerPost> FreelancerPosts { get; set; }
-
+        public DbSet<Blog> Blogs { get; set; }
     }
 }

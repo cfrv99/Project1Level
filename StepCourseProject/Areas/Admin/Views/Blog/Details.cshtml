@@ -1,0 +1,9 @@
+﻿@model BlogAdminPageVM
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+@Html.Raw(Model.BlogDesc)

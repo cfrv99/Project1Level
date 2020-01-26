@@ -105,3 +105,6 @@ C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\ne
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Shared\_ClientLayout.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\_ViewImports.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\_ViewStart.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Blog\Blogs.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Blog\Create.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Blog\Details.cshtml.g.cs

@@ -239,6 +239,27 @@ namespace StepCourseProject.Migrations
                     b.ToTable("Bids");
                 });
 
+            modelBuilder.Entity("StepCourseProject.Entites.Blog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BlogUrl");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Blogs");
+                });
+
             modelBuilder.Entity("StepCourseProject.Entites.Category", b =>
                 {
                     b.Property<int>("Id")

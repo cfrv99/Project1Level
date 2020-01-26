@@ -21,7 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="~/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link href="~/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet">
 
 </head>
 
@@ -373,8 +373,10 @@
     <!-- Page level custom scripts -->
     <script src="~/admin/js/demo/datatables-demo.js"></script>
     <script src="~/js/signalr.min.js"></script>
+    
 
     <script>
+        
         const hubConnection = new signalR.HubConnectionBuilder()
             .withUrl("/not")
             .build();

@@ -47,6 +47,7 @@ namespace StepCourseProject
             services.AddTransient<IPostRepo, PostRepository>();
             services.AddTransient<IBidService, BidService>();
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IAdminService, AdminService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
