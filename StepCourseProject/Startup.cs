@@ -41,19 +41,20 @@ namespace StepCourseProject
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-           // services.AddTransient<ICategoryService, CategoryService>();
+           
             services.AddTransient<ICategoryRepo, CategoryRepository>();
             services.AddTransient<ISkillRepo, SkillRepository>();
             services.AddTransient<IPostRepo, PostRepository>();
             services.AddTransient<IBidService, BidService>();
+            services.AddScoped<IPostService, PostService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddAuthentication();
+            
             services.AddAuthorization();
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
-            //services.AddSignalR();
+            
             services.AddSignalR().AddJsonProtocol(options =>
             {
                 options.PayloadSerializerSettings.NullValueHandling = NullValueHandling.Ignore;

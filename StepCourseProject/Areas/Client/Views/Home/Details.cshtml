@@ -1,0 +1,77 @@
+﻿@model StepCourseProject.Areas.Client.Models.PostDetailsVM
+@{
+    ViewData["Title"] = "Details";
+
+
+}
+
+@foreach (var item in Model.Bids)
+{
+
+    <div class="main-ws-sec">
+        <div class="posts-section">
+            <div class="post-bar">
+                <div class="post_topbar">
+                    <div class="usy-dt">
+                        @if (item.AppUser.ImageUrl != null)
+                        {
+                            <img style="width:50px;height:50px;" src="~/img/@item.AppUser.ImageUrl" alt="person image">
+
+                        }
+                        else
+                        {
+                            <img style="width:50px;height:50px;" src="images/resources/us-pic.png" alt="bolt image">
+
+                        }
+                        <div class="usy-name">
+                            <h3>@item.AppUser.FullName</h3>
+                            <span><img src="images/clock.png" alt="">@item.BidDate.ToLongDateString()</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="epi-sec">
+                    <ul class="descp">
+                        <li><img src="images/icon8.png" alt=""><span>Developer</span></li>
+                        <li><img src="images/icon9.png" alt=""><span>@item.AppUser.City</span></li>
+                    </ul>
+                    <ul class="bk-links">
+                       
+                        <li><a href="#" title=""><i class="la la-envelope" ></i></a></li>
+                        <li>
+                            <form asp-action="AcceptBid" asp-controller="Bid" method="post">
+                                <input type="hidden" name="bidId" value="@item.Id" />
+                                <input type="hidden" name="postId" value="@item.PostId" />
+
+                                <input type="submit" style="margin-top:-10px;" class="btn btn-success"  value="Accept Now" />
+                            </form>
+                    </ul>
+                </div>
+                <div class="job_descp">
+                    <h3>Simple Classified Site</h3>
+                    <ul class="job-dt">
+                        <li><span>$@item.Post.StartPrice - $@item.Post.EndPrice</span></li>
+                    </ul>
+                    <p>
+                        @item.Post.PostDescription
+
+
+                </div>
+                <div class="job-status-bar">
+                    <ul class="like-com">
+                        <li>
+                            <a href="#" class="active"><i class="fas fa-heart"></i> Like</a>
+                            <img src="~/Client/images/liked-img.png" alt="">
+                            <span>25</span>
+                        </li>
+                        <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comments 15</a></li>
+                    </ul>
+                    <a href="#"><i class="fas fa-eye"></i>Views 50</a>
+                </div>
+            </div><!--post-bar end-->
+          
+            
+        </div><!--posts-section end-->
+    </div><!--main-ws-sec end-->
+
+}

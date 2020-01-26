@@ -342,7 +342,7 @@ namespace StepCourseProject.Migrations
 
                     b.Property<string>("AppUserId");
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<decimal>("EndPrice");
 
@@ -518,8 +518,7 @@ namespace StepCourseProject.Migrations
 
                     b.HasOne("StepCourseProject.Entites.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("StepCourseProject.Entites.Skill", "Skill")
                         .WithMany("Posts")

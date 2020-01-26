@@ -94,3 +94,14 @@ C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\ne
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Message\SendMessage.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\MessageInbox\Default.cshtml.g.cs
 C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\ClientProfile\ClientProfileSettings.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\LeftMenu\Default.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Project\AllFreeLancers.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\LeftFilterMenu\Default.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Home\CreateProject.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Home\Details.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Home\Index.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Home\List.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Shared\Components\NotificationClient\Default.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\Shared\_ClientLayout.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\_ViewImports.cshtml.g.cs
+C:\Users\Murad\Desktop\stepProjectsCourse-master2\StepCourseProject\obj\Debug\netcoreapp2.2\Razor\Areas\Client\Views\_ViewStart.cshtml.g.cs

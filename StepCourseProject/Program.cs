@@ -94,6 +94,7 @@ namespace StepCourseProject
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .UseUrls("http://localhost:27000")
                 .UseStartup<Startup>();
     }
 }

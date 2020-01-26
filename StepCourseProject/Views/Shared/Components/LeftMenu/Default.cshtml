@@ -1,0 +1,32 @@
+﻿@model LeftMenuViewModel
+
+<div class="user-data full-width">
+    <div class="user-profile">
+        <div class="username-dt">
+            <div class="usr-pic">
+                <img src="~/img/@Model.ImageUrl" alt="">
+            </div>
+        </div><!--username-dt end-->
+        <div class="user-specs">
+            <h3>@Model.UserName</h3>
+            <span>I am developer</span>
+        </div>
+    </div><!--user-profile end-->
+    <ul class="user-fw-status">
+        <li>
+            <h4>Skills</h4>
+            @foreach (var item in Model.Skills)
+            {
+                <span style="margin-left:8px; font-size:14px;"><i class="fas fa-tags"></i> @item.Skill.SkillName</span>
+
+            }
+        </li>
+        <li>
+            <h4>Experience</h4>
+            <span>@Model.Experiance</span>
+        </li>
+        <li>
+            <a asp-action="Profile" asp-controller="Account" asp-route-userId="@Model.UserId" title="">View Profile</a>
+        </li>
+    </ul>
+</div>

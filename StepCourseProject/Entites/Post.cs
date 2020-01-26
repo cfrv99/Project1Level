@@ -28,7 +28,7 @@ namespace StepCourseProject.Entites
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public List<Notification> Notifications { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Category Category { get; set; }
         public List<FreelancerPost> FreelancerPosts { get; set; }
 

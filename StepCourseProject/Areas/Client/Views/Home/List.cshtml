@@ -1,0 +1,66 @@
+﻿@model IEnumerable<StepCourseProject.Entites.Post>
+@{
+    ViewData["Title"] = "List";
+}
+
+@foreach (var item in Model)
+{
+    <div class="main-ws-sec">
+        <div class="posts-section">
+            <div class="post-bar">
+                <div class="post_topbar">
+                    <div class="usy-dt">
+                        <img style="width:50px;height:50px;" src="~/Client/images/resources/us-pic.png" alt="">
+                        <div class="usy-name">
+                            <h3>@item.AppUser.FullName</h3>
+                            <span><img  src="~/Client/images/clock.png" alt="">
+                            @item.PostDate.ToLongDateString()
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ed-opts">
+                        <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                        <ul class="ed-options">
+                            <li><a asp-controller="Home" asp-action="DeletePost" asp-route-id="@item.Id" title="">Delete Post</a></li>
+                        
+                        </ul>
+                    </div>
+                </div>
+                <div class="epi-sec">
+                    <ul class="descp">
+                        <li><img src="~/Client/images/icon8.png" alt=""><span>Developer</span></li>
+                        <li><img src="~/Client/images/icon9.png" alt=""><span>@item.AppUser.City</span></li>
+                    </ul>
+                  
+
+                </div>
+                <div class="job_descp">
+                    <h3>@item.PostName</h3>
+                    <ul class="job-dt">
+                        <li><span>$@item.StartPrice - $@item.EndPrice</span></li>
+                    </ul>
+                    <p>    
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@item.Id" title="">view more</a></p>
+                    <ul class="skill-tags">
+                       
+                        <li><a href="#" title="">@item.Skill.SkillName</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="job-status-bar">
+                    <ul class="like-com">
+                        <li>
+                            <a href="#" class="active"><i class="fas fa-heart"></i> Like</a>
+                            <img src="~/Client/images/liked-img.png" alt="">
+                            <span>25</span>
+                        </li>
+                        <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comments @item.Bids.Count</a></li>
+                    </ul>
+                    <a href="#"><i class="fas fa-eye"></i>Views 50</a>
+                </div>
+            </div><!--post-bar end-->
+          
+           
+        </div><!--posts-section end-->
+    </div><!--main-ws-sec end-->
+}

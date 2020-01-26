@@ -18,6 +18,6 @@ namespace StepCourseProject.Models
         public DateTime PostDeadLine { get; set; }
         public string PostUserName { get; set; }
         public string PostUserId { get; set; }
-
+        public int SkillId { get; internal set; }
     }
 }

@@ -41,11 +41,20 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Client\Data\" />
     <Folder Include="Entites\Validations\" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <None Include="Areas\Client\Views\Home\CreateProject.cshtml" />
+    <None Include="Areas\Client\Views\Home\Details.cshtml" />
+    <None Include="Areas\Client\Views\Home\Index.cshtml" />
+    <None Include="Areas\Client\Views\Home\List.cshtml" />
+    <None Include="Areas\Client\Views\Shared\Components\NotificationClient\Default.cshtml" />
+    <None Include="Areas\Client\Views\Shared\_ClientLayout.cshtml" />
+    <None Include="Areas\Client\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Client\Views\_ViewStart.cshtml" />
     <None Include="wwwroot\admin\.browserslistrc" />
     <None Include="wwwroot\admin\.gitignore" />
     <None Include="wwwroot\admin\.travis.yml" />
@@ -1937,6 +1946,46 @@
     <None Include="wwwroot\banker\scss\_site-base.scss" />
     <None Include="wwwroot\banker\scss\_site-blocks.scss" />
     <None Include="wwwroot\banker\scss\_site-navbar.scss" />
+    <None Include="wwwroot\ClientView\fonts\fontawesome-webfont3e6e.svg" />
+    <None Include="wwwroot\ClientView\fonts\fontawesome-webfont3e6e.woff2" />
+    <None Include="wwwroot\ClientView\fonts\line-awesomeeb4f.svg" />
+    <None Include="wwwroot\ClientView\fonts\line-awesomeeb4f.woff2" />
+    <None Include="wwwroot\ClientView\js\bootstrap.min.js" />
+    <None Include="wwwroot\ClientView\js\flatpickr.min.js" />
+    <None Include="wwwroot\ClientView\js\jquery.mCustomScrollbar.js" />
+    <None Include="wwwroot\ClientView\js\jquery.min.js" />
+    <None Include="wwwroot\ClientView\js\jquery.range-min.js" />
+    <None Include="wwwroot\ClientView\js\popper.js" />
+    <None Include="wwwroot\ClientView\js\script.js" />
+    <None Include="wwwroot\ClientView\js\scrollbar.js" />
+    <None Include="wwwroot\ClientView\lib\slick\fonts\slick.svg" />
+    <None Include="wwwroot\ClientView\lib\slick\slick.min.js" />
+    <None Include="wwwroot\ClientView\vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\ClientView\vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\ClientView\vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\ClientView\vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\ClientView\vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\ClientView\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\Client\fonts\fontawesome-webfont3e6e.svg" />
+    <None Include="wwwroot\Client\fonts\fontawesome-webfont3e6e.woff2" />
+    <None Include="wwwroot\Client\fonts\line-awesomeeb4f.svg" />
+    <None Include="wwwroot\Client\fonts\line-awesomeeb4f.woff2" />
+    <None Include="wwwroot\Client\js\bootstrap.min.js" />
+    <None Include="wwwroot\Client\js\flatpickr.min.js" />
+    <None Include="wwwroot\Client\js\jquery.mCustomScrollbar.js" />
+    <None Include="wwwroot\Client\js\jquery.min.js" />
+    <None Include="wwwroot\Client\js\jquery.range-min.js" />
+    <None Include="wwwroot\Client\js\popper.js" />
+    <None Include="wwwroot\Client\js\script.js" />
+    <None Include="wwwroot\Client\js\scrollbar.js" />
+    <None Include="wwwroot\Client\lib\slick\fonts\slick.svg" />
+    <None Include="wwwroot\Client\lib\slick\slick.min.js" />
+    <None Include="wwwroot\Client\vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\Client\vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\Client\vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\Client\vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Client\vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\Client\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
   </ItemGroup>
 
 </Project>

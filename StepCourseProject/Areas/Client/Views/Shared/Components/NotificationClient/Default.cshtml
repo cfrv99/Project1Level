@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<StepCourseProject.Entites.Notification>
+<li>
+    <a href="#" title="" class="not-box-open">
+        <span><img src="~/Client/images/icon7.png" alt=""></span>
+        Notification 
+        @if (ViewBag.Count != 0)
+        {
+
+        <span class="badge badge-light">@ViewBag.Count</span>
+        }
+      
+    </a>
+    <div class="notification-box noti" id="notification">
+        <div class="nt-title">
+            <h4>Settings</h4>
+            <a href="#" title="">Clear all</a>
+        </div>
+        <div class="nott-list">
+            @if (ViewBag.Count != 0)
+            {
+
+                @foreach (var item in Model)
+                {
+
+                    <div class="notfication-details">
+                        <div class="noty-user-img">
+                            @if (item.AppUser.ImageUrl != null)
+                            {
+
+                                <img src="~/img/@item.AppUser.ImageUrl" alt="">
+                            }
+                            else
+                            {
+                                <img src="~/Client/images/resources/ny-img1.png" alt="">
+                            }
+                        </div>
+                        <div class="notification-info">
+                            <h3><a href="#" title="">@item.AppUser.FullName</a>   @item.NotificationText</h3>
+
+                        </div><!--notification-info -->
+                    </div>
+                }
+                <div class="view-all-nots">
+                    <a href="#" title="">View All Notification</a>
+                </div>
+
+            }
+            else
+            {
+                <div class="view-all-nots">
+                    <a href="#" title="">No notifications</a>
+                </div>
+            }
+
+
+        </div><!--nott-list end-->
+    </div><!--notification-box end-->
+</li>

@@ -1,13 +1,203 @@
 ﻿@model IEnumerable<AllPostViewModel>
 @{
     ViewData["Title"] = "AllPost";
+    //Layout = "_Layout.cshtml";
+
 }
 
-<h1>AllPost</h1>
+<div class="search-sec">
+    <div class="container">
+        <div class="search-box">
+            <form>
+                <input type="text" name="search" placeholder="Search keywords">
+                <button type="submit">Search</button>
+            </form>
+        </div><!--search-box end-->
+    </div>
+</div><!--search-sec end-->
 
-@foreach (var item in Model)
-{
-    <h2>@item.PostName</h2>
-    <p>@item.SkillName</p>
-    <a asp-action="Details" asp-controller="Project" asp-route-id="@item.Id">Link to here</a>
-}
+
+<main>
+    <div class="main-section">
+        <div class="container">
+            <div class="main-section-data">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="filter-secs">
+                            <div class="filter-heading">
+                                <h3>Filters</h3>
+                                <a href="#" title="">Clear all filters</a>
+                            </div><!--filter-heading end-->
+                            @await Component.InvokeAsync("LeftFilterMenu")
+                        </div><!--filter-secs end-->
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="main-ws-sec">
+                            <div class="posts-section">
+                                @foreach (var item in Model)
+                                {
+
+                                    <div class="post-bar">
+                                        <div class="post_topbar">
+                                            <div class="usy-dt">
+                                                <img src="~/ClientView/images/resources/us-pic.png" alt="">
+                                                <div class="usy-name">
+                                                    <h3>@item.PostUserName</h3>
+                                                    <span><img src="images/clock.png" alt="">3 min ago</span>
+                                                </div>
+                                            </div>
+                                            <div class="ed-opts">
+                                                <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                <ul class="ed-options">
+                                                    <li><a asp-action="Profile" asp-controller="Account" asp-route-userId="@item.PostUserId" title="">Author Profile</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="epi-sec">
+                                            <ul class="descp">
+                                                <li><img src="images/icon8.png" alt=""><span>Developer</span></li>
+                                                <li><img src="images/icon9.png" alt=""><span>India</span></li>
+                                            </ul>
+                                            <ul class="bk-links">
+
+                                                <li><a asp-action="SendMessage" asp-controller="Message" asp-route-userId="@item.PostUserId" title=""><i class="la la-envelope"></i></a></li>
+                                                <li><a asp-action="Details" asp-controller="Project" asp-route-id="@item.Id" title="" class="bid_now">Bid Now</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="job_descp">
+                                            <h3>Simple Classified Site</h3>
+                                            <ul class="job-dt">
+                                                <li><span>$@item.StartPrice - $@item.EndPrice</span></li>
+                                            </ul>
+                                            <p>@item.PostDesc <a href="#" title="">view more</a></p>
+                                            <ul class="skill-tags">
+                                                <li><a href="#" title="">@item.SkillName</a></li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="job-status-bar">
+                                            <ul class="like-com">
+                                                <li>
+                                                    <a href="#" class="active"><i class="fas fa-heart"></i> Like</a>
+                                                    <img src="images/liked-img.png" alt="">
+                                                    <span>25</span>
+                                                </li>
+                                                <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Bids @item.CountBids</a></li>
+                                            </ul>
+                                            <a href="#"><i class="fas fa-eye"></i>Views 50</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="right-sidebar">
+                            <div class="widget widget-about">
+                                <img src="images/wd-logo.png" alt="">
+                                <h3>Track Time on Workwise</h3>
+                                <span>Pay only for the Hours worked</span>
+                                <div class="sign_link">
+                                    <h3><a href="sign-in.html" title="">Sign up</a></h3>
+                                    <a href="#" title="">Learn More</a>
+                                </div>
+                            </div><!--widget-about end-->
+                            <div class="widget widget-jobs">
+                                <div class="sd-title">
+                                    <h3>Top Jobs</h3>
+                                    <i class="la la-ellipsis-v"></i>
+                                </div>
+                                <div class="jobs-list">
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Senior Product Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Senior UI / UX Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Junior Seo Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Senior PHP Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Senior Developer Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                </div><!--jobs-list end-->
+                            </div><!--widget-jobs end-->
+                            <div class="widget widget-jobs">
+                                <div class="sd-title">
+                                    <h3>Most Viewed This Week</h3>
+                                    <i class="la la-ellipsis-v"></i>
+                                </div>
+                                <div class="jobs-list">
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Senior Product Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Senior UI / UX Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <h3>Junior Seo Designer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span>$25/hr</span>
+                                        </div>
+                                    </div><!--job-info end-->
+                                </div><!--jobs-list end-->
+                            </div><!--widget-jobs end-->
+                        </div><!--right-sidebar end-->
+                    </div>
+                </div>
+            </div><!-- main-section-data end-->
+        </div>
+    </div>
+</main>
+<script>
+
+</script>

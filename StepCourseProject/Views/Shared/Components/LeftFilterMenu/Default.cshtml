@@ -1,0 +1,29 @@
+﻿
+<div class="paddy">
+    <div class="filter-dd">
+        <div class="filter-ttl">
+            <h3>Skills</h3>
+            <a href="#" title="">Clear</a>
+        </div>
+        <form>
+            <input type="text" name="search-skills" placeholder="Search skills">
+        </form>
+    </div>
+
+
+    <div class="filter-dd">
+        <!--rg-limit end-->
+        <form class="multi-range-field my-5 pb-5" asp-action="AllPost" asp-controller="Project" method="get">
+            <div class="form-row">
+                <div class="col">
+                    <input type="number" name="from" id="from" class="form-control" placeholder="From">
+                </div>
+                <div class="col">
+                    <input type="number" id="to" name="to" class="form-control" placeholder="To">
+                </div>
+                <input class="mt-2 btn btn-secondary" type="submit"  value="Filter Now" />
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -1,4 +1,5 @@
-﻿using StepCourseProject.Entites;
+﻿using Microsoft.EntityFrameworkCore;
+using StepCourseProject.Entites;
 using StepCourseProject.Entites.Contexts;
 using StepCourseProject.Entites.Enums;
 using StepCourseProject.Services.Abstract;
@@ -24,10 +25,9 @@ namespace StepCourseProject.Services.Concrete
                 .FirstOrDefault();
             bid.IsDone = true;
             var post = context.Posts.Where(i => i.Id == postId).FirstOrDefault();
-            if (bid.IsDone == true)
-            {
-                post.HaveIsDoneBid = true;
-            }
+
+            post.HaveIsDoneBid = true;
+
             bid.Status = BidStatus.Accepted;
 
             var stayingBids = context.Bids.Where(i => i.PostId == postId && i.IsDone == false).ToList();
@@ -39,7 +39,7 @@ namespace StepCourseProject.Services.Concrete
                     PostId = item.PostId,
                     NotificationText = $"{currentUser.UserName} declined your bid to project",
                     FromUserName = currentUser.UserName,
-                    AppUserId=item.AppUserId,
+                    AppUserId = item.AppUserId,
                     IsRead = false
 
                 };
@@ -58,9 +58,11 @@ namespace StepCourseProject.Services.Concrete
                 IsRead = false
             };
             context.Notifications.Add(n);
-
-            context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FreelancerId = bid.AppUserId }); 
-            context.SaveChanges();
+            if (bid.IsDone == true && bid.PostId == postId)
+            {
+                context.FreelancerPosts.Add(new FreelancerPost { PostId = postId, FreelancerId = bid.AppUserId });
+                context.SaveChanges();
+            }
         }
 
         public void CreateBidToProject(Post post, Bid bid, AppUser user)
@@ -72,7 +74,7 @@ namespace StepCourseProject.Services.Concrete
                 BidDate = bid.BidDate,
                 BidPrice = bid.BidPrice,
                 IsDone = false,
-                Status=Entites.Enums.BidStatus.Waiting,
+                Status = Entites.Enums.BidStatus.Waiting,
                 isPublic = bid.isPublic,
                 PostId = post.Id
             };
@@ -93,7 +95,7 @@ namespace StepCourseProject.Services.Concrete
 
         public List<Bid> GetBidsByPostId(int postId)
         {
-            return context.Bids.Where(i => i.PostId == postId).ToList();
+            return context.Bids.Include(i=>i.AppUser).Where(i => i.PostId == postId).ToList();
         }
     }
 }

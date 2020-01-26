@@ -1,0 +1,49 @@
+﻿@model StepCourseProject.Areas.Client.Models.PostViewModel
+
+@{
+    ViewData["Title"] = "CreateProject";
+    
+}
+    <div class="container">
+        <h1 style="font-size:40px;">Create Project</h1>
+        <hr />
+        <form class="p-1 m-1" asp-action="CreateProject" asp-controller="Home" method="post">
+
+            <div class="form-group has-danger">
+                <label asp-for="PostName" class="m-2">PostName</label>
+                <div><span class="text-danger" asp-validation-for="PostName"></span></div>
+                <input asp-for="PostName" class="form-control" />
+            </div>
+
+            <div class="form-group has-danger">
+                <label asp-for="PostDeadLine" class="m-2">Post DeadLine</label>
+                <div><span class="text-danger" asp-validation-for="PostDeadLine"></span></div>
+                <input type="date" asp-for="PostDeadLine" class="form-control" />
+            </div>
+            <div class="form-group has-danger">
+                <label asp-for="PostDescription" class="m-2">Post Description</label>
+                <textarea class="form-control" asp-for="PostDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group has-danger">
+                <div><span class="text-danger" asp-validation-for="SkillId"></span></div>
+                <select asp-for="SkillId" required class="form-control"
+                        asp-items="@ViewBag.Skills">
+                    <option disabled selected>Please select one skill</option>
+                </select>
+            </div>
+
+            <div class="form-group has-danger">
+                <label asp-for="StartPrice" class="m-2">Start Price</label>
+                <div><span class="text-danger" asp-validation-for="StartPrice"></span></div>
+                <input asp-for="StartPrice" class="form-control" />
+            </div>
+            <div class="form-group has-danger">
+                <label asp-for="EndPrice" class="m-2">End Price</label>
+                <div><span class="text-danger" asp-validation-for="EndPrice"></span></div>
+                <input asp-for="EndPrice" class="form-control" />
+            </div>
+            <input type="submit" class="btn btn-primary" value="Create Project" />
+        </form>
+
+
+    </div>

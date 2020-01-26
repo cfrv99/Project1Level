@@ -58,6 +58,7 @@
             <p class="login_orTxt">OR</p>
             <form asp-action="Login" asp-controller="Account">
                 <input type="text" asp-for="UserName" class="login_input" placeholder="Email or Username">
+                <input type="hidden" name="returnUrl" id="returnUrl" value="@ViewBag.ReturnUrl" />
                 <input type="password" asp-for="Password" class="login_input" placeholder="Password">
                 <input type="submit" class="login_loginBtn" value="Log In">
             </form>

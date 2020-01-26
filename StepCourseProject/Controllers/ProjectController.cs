@@ -22,22 +22,25 @@ namespace StepCourseProject.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly AppDbContext context;
         private readonly IBidService bidService;
+        private readonly IPostService postService;
 
         public ProjectController(IPostRepo repo,
             UserManager<AppUser> userManager,
             AppDbContext context,
-            IBidService bidService)
+            IBidService bidService,
+            IPostService postService)
         {
             this.repo = repo;
             this.userManager = userManager;
             this.context = context;
             this.bidService = bidService;
+            this.postService = postService;
         }
 
 
         //UI yoxdur
         [HttpGet]
-        public async Task<IActionResult> AllPost()
+        public async Task<IActionResult> AllPost(decimal from, decimal to)
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
             if (user == null)
@@ -46,79 +49,27 @@ namespace StepCourseProject.Controllers
             }
             var userSkills = context.UserSkills.Where(i => i.AppUserId == user.Id).ToList();
 
+            var data = postService.AllPostInMainPage();
             if (userSkills == null)
             {
-                var d = context.Posts.Include(i => i.AppUser)
-                    .Include(i => i.Bids)
-                    .Include(i => i.Skill)
-                    .Select(i => new AllPostViewModel
-                    {
-                        Id = i.Id,
-                        PostName = i.PostName,
-                        PostDesc = i.PostDescription,
-                        PostDate = i.PostDate,
-                        PostDeadLine = i.PostDeadLine,
-                        PostUserId = i.AppUserId,
-                        PostUserName = i.AppUser.UserName,
-                        CountBids = i.Bids.Count(),
-                        EndPrice = i.EndPrice,
-                        SkillName = i.Skill.SkillName,
-                        StartPrice = i.StartPrice
-                    }).ToList();
-                return View(d);
+                return View(data);
             }
-
             HashSet<int> diffIds = new HashSet<int>(userSkills.Select(i => i.SkillId));
 
-            var data = context.Posts.Where(i => diffIds.Contains(i.SkillId))
-                .Include(i => i.AppUser)
-                .Include(i => i.Bids)
-                .Include(i => i.Skill)
-                .Select(i => new AllPostViewModel()
-                {
-                    Id = i.Id,
-                    PostName = i.PostName,
-                    PostDesc = i.PostDescription,
-                    PostDate = i.PostDate,
-                    PostDeadLine = i.PostDeadLine,
-                    PostUserId = i.AppUserId,
-                    PostUserName = i.AppUser.UserName,
-                    CountBids = i.Bids.Count(),
-                    EndPrice = i.EndPrice,
-                    SkillName = i.Skill.SkillName,
-                    StartPrice = i.StartPrice
-                }).ToList();
+            data = data.Where(i => diffIds.Contains(i.SkillId)).ToList();
 
-            if (data.Count == 0)
+            if (to != 0 && from != 0)
             {
-                return NotFound();
+                data = data.Where(i => i.StartPrice > from && i.StartPrice <= to).ToList();
             }
+
             return View(data);
         }
 
         [HttpGet] //UI yoxdur
         public IActionResult Details(int id)
-        {
-            
-            var entity = context.Posts.Where(i => i.Id == id)
-                .Include(i => i.AppUser)
-                .Include(i => i.Bids)
-                .Include(i => i.Skill)
-                .Select(i => new DetailViewModel
-                {
-                    Id = i.Id,
-
-                    PostName = i.PostName,
-                    PostSkillName = i.Skill.SkillName,
-                    PostDescription = i.PostDescription,
-                    PostStartPrice = i.StartPrice,
-                    PostEndPrice = i.EndPrice,
-                    Bids = i.Bids.Where(a => a.isPublic).ToList(),
-                    PostDate = i.PostDate,
-                    PostDeadLine = i.PostDeadLine,
-                    UserId = i.AppUser.Id,
-                    UserName = i.AppUser.UserName
-                }).FirstOrDefault();
+        {           
+            var entity = postService.GetPostDetail(id);
 
             return View(entity);
         }
@@ -138,13 +89,13 @@ namespace StepCourseProject.Controllers
             };
 
             bidService.CreateBidToProject(post, b, user);
-            
-            return View();
+
+            return RedirectToAction("Details", new { id=vm.CreateBid.PostId });
         }
 
 
         [ActionName("My")]
-        [Route("/projects")]  //ui yoxdur
+        [Route("/projects")]
         public async Task<IActionResult> CurrentFreelancerProjects()
         {
             var currentUser = await userManager.FindByNameAsync(User.Identity.Name);
@@ -163,7 +114,7 @@ namespace StepCourseProject.Controllers
                     PostDescription = i.PostDescription,
                     PostName = i.PostName,
                     PostPrice = i.Bids
-                    .Where(b => b.PostId == i.Id && b.AppUserId == currentUserId && b.IsDone == true && b.Status==BidStatus.Accepted)
+                    .Where(b => b.PostId == i.Id && b.AppUserId == currentUserId && b.IsDone == true && b.Status == BidStatus.Accepted)
                     .Select(b => b.BidPrice)
                     .FirstOrDefault()
                 })
@@ -171,6 +122,18 @@ namespace StepCourseProject.Controllers
 
 
             return View();
+        }
+
+        public async Task<IActionResult> AllFreeLancers()
+        {
+            var currentUser = await userManager.FindByNameAsync(User.Identity.Name);
+
+            var freelancers = await userManager.GetUsersInRoleAsync("Freelancer");
+
+
+            var coverData = freelancers.OrderByDescending(i => i.Rating).Take(10).AsQueryable();
+
+            return View(coverData);
         }
 
 

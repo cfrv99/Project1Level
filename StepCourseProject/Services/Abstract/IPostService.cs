@@ -1,4 +1,5 @@
 ﻿using StepCourseProject.Entites;
+using StepCourseProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace StepCourseProject.Services.Abstract
     {
         void CreatePostFromClient(Post post, Skill skill, AppUser user);
         List<Post> GetYourPosts(AppUser currentUser);
+        List<AllPostViewModel> AllPostInMainPage();
+        DetailViewModel GetPostDetail(int id);
     }
 }

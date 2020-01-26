@@ -86,6 +86,7 @@ namespace StepCourseProject.Controllers
                 var result = await userManager.CreateAsync(user, vm.Password);
                 if (result.Succeeded)
                 {
+                    await signInManager.PasswordSignInAsync(user, vm.Password, false, false);
                     //var role = await roleManager.FindByNameAsync("Admin");
                     //await userManager.AddToRoleAsync(user, role.Name);
                     var adminUsers = await userManager.GetUsersInRoleAsync("Admin");
@@ -104,7 +105,7 @@ namespace StepCourseProject.Controllers
                     }
 
 
-                    await signInManager.SignInAsync(user, false);
+                    
                     var role = await roleManager.FindByNameAsync(selectedRole);
                     if (role == null)
                     {
@@ -130,12 +131,13 @@ namespace StepCourseProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View(new LoginVM());
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM vm)
+        public async Task<IActionResult> Login(LoginVM vm,string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -146,14 +148,13 @@ namespace StepCourseProject.Controllers
                     var result = await signInManager.PasswordSignInAsync(user, vm.Password, false, false);
                     if (result.Succeeded)
                     {
-
                         var roles = await userManager.GetRolesAsync(user);
                         if (roles.Contains("Admin"))
                         {
                             return Redirect("/Admin/Home/Dashboard");
                         }
 
-                        else { return Redirect("/"); }
+                        else { return Redirect(returnUrl??"/"); }
 
                     }
                     ModelState.AddModelError("", "Login or Passwrod is incorrect");
